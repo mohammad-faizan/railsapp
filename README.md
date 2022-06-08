@@ -1,24 +1,23 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Basic Requirements:
 
-Things you may want to cover:
+* Ruby version - ruby 2.7.5p203
 
-* Ruby version
+* System dependencies - Mac / Linux / Ubuntu
 
-* System dependencies
+* Database creation - rake db:create
 
-* Configuration
+* Test Case - bundle exec rspec
 
-* Database creation
+Evaluate factor
+* Core Ruby - Creating Class / Creating Module / Use of Oops
+* Rails - Name convection and use of rails existing function and feature
+* Database - Associations (STI / Polymorphic Association etc)
+* Programming Logic
+* Metaprogramming / Rspec / Git Commit History (Additional Bonus)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Steps:
+1. Take a fork of this repo or download it 
+2. Do the coding as per exercise provide by HR
+3. Submit the code to your fork and share link or please create a zip file of git repo and submit the same to HR
