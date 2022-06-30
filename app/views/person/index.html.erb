@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <%= link_to "View Employees", list_path(type: :employee), class: "btn btn-primary" %>      
+    </div>
+    <div class="col">
+      <%= link_to "View Candidates", list_path(type: :candidate), class: "btn btn-primary" %>
+    </div>
+    <div class="col">
+      <%= link_to "View Interviews", interviews_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

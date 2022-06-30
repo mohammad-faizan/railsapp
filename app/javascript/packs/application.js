@@ -11,3 +11,17 @@ import "channels"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+// jquery
+import $ from 'jquery';
+
+global.$ = $
+global.jQuery = $
+
+import "bootstrap"
+require("@popperjs/core");
+require('jquery-datetimepicker');
+
+// The stylesheet location we created earlier
+require("../stylesheets/application.scss")
+require("jquery-datetimepicker/jquery.datetimepicker.css")

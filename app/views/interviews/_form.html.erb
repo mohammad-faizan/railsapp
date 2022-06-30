@@ -1,0 +1,58 @@
+<div class="row">
+  <%= form_for(@interview, html: {class: "g-3"}) do |f| %>
+    <%= form_errors(@interview) %>
+    <div class="mb-3 row">
+      <%= f.label :candidate, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.select :candidate_id, options_for_select(@candidates.collect{|c| [c.name, c.id]},@interview.candidate_id),{},{class: "form-select form-select-lg mb-3"} %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <%= f.label :requirements, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-10">
+        <%= f.text_area :requirements, cols: 30, rows: 5, html: {class: "form-control"} %>          
+      </div>
+    </div>
+
+    <div class="interview_round">
+      <% @interview.interview_rounds.each_with_index do |i_round, i| %>
+        <h3>Schedule Interview Round : <%= i + 1 %></h3>
+        <%= f.fields_for :interview_rounds do |ir| %>
+          <div class="mb-3 row">
+            <%= ir.label :employee, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-6">
+              <%= ir.select :employee_id, options_for_select(@employees.collect{|c| [c.name, c.id]}, i_round.employee_id), {},{class: "form-select form-select-lg mb-3"} %>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <%= ir.label :Interview_date, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-3">
+              <%= ir.text_field :when, class: 'form-control datepicker'%>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <%= ir.label :interview_location, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-6">
+              <%= ir.text_field :where, class: 'form-control'%>
+            </div>
+          </div>
+          <div class="mb-3 row">
+            <%= ir.label :round_status, class: "col-sm-2 col-form-label" %>
+            <div class="col-sm-6">
+              <%= ir.select :status, options_for_select(InterviewRound::STATUS.collect {|v, k| [k, v]}, i_round.status),{}, {class: "form-select form-select-lg mb-3"} %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div> <!--interview round end -->
+
+    <div class="mb-3 row">
+      <%= f.submit "Submit", class: "btn btn-success col-sm-2" %>
+      <div class="col-sm-10"><%= link_to "Cancel", interviews_path, class: "btn btn-secondary col-sm-2"%></div>
+    </div>
+  <% end %> <!-- form_for end -->
+</div>
+<script type="text/javascript">
+  $(".datepicker" ).datetimepicker();
+</script>

@@ -38,9 +38,9 @@ end
   d = lambda {|t| {name: t,email: "#{t}@email.com",experience: rand(1..15)}}
   emp = Employee.create(d.call(t))
   t = "Candidate_#{n}"
-  cand = Candidate.create(d.call(t).update(interviewer: emp))
-  PeopleSkill.create(person_id: emp, skill_id: n)
-  PeopleSkill.create(person_id: cand, skill_id: n)
+  cand = Candidate.create(d.call(t))
+  p PeopleSkill.create(person_id: emp.id, skill_id: n)
+  p PeopleSkill.create(person_id: cand.id, skill_id: n)
   intrvw = Interview.create(candidate: cand, requirements: skills.sample(rand(1..skills.length)).join(' '))
   (1..3).each do |o|
     ir = InterviewRound.create(interview: intrvw, employee: emp, when: DateTime.now, where: "Some place", review_comments: "Text review comments")

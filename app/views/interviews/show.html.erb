@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      Candidate Name: 
+    </div>
+    <div class="col">
+      <%= @interview.candidate.name %>
+    </div>
+    <div class="col">
+    </div>
+    <div class="col">
+    </div>
+  </div>
+
+  <div class="row">
+    <table class="table">
+      <thead>
+        <th>Interview Round</th>
+        <th>Scheduled Date</th>
+        <th>Interview Location</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <% @interview.interview_rounds.each_with_index do |r, i| %>
+          <tr>
+            <td><%= i + 1%></td>
+            <td><%= r.when %></td>
+            <td><%= r.where %></td>
+            <td><%= r.status %></td>
+          </tr>
+        <% end %>        
+      </tbody>
+  </div>
+</div>

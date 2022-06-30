@@ -1,0 +1,46 @@
+<div class="row">
+  <%= form_for(@person.class.superclass.new, url: create_path, html: {class: "g-3"}) do |f| %>
+    <%= form_errors(@person) %>
+    <%= f.hidden_field :type, value: @person.type %>
+    <div class="mb-3 row">
+      <%= f.label :name, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.text_field :name,{class: "form-control"} %>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <%= f.label :email, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-6">
+        <%= f.email_field :email,{class: "form-control"} %>
+      </div>
+    </div>
+
+    <% if @person.is_a?(Candidate) %>
+      <div class="mb-3 row">
+        <%= f.label :date_of_birth, class: "col-sm-2 col-form-label" %>
+        <div class="col-sm-3">
+          <%= f.text_field :dob, class: 'form-control datepicker'%>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mb-3 row">
+      <%= f.label :experience, class: "col-sm-2 col-form-label" %>
+      <div class="col-sm-3">
+        <%= f.number_field :experience, class: 'form-control'%>
+      </div>
+    </div>
+
+    <div class="mb-3 row">
+      <div class="col-sm-3"></div>
+      <div class="col-sm-9">
+        <%= f.submit "Submit", class: "btn btn-success" %>  
+        <%= link_to "Cancel", eval("#{@person.type.downcase.pluralize}_path"), class: "btn btn-secondary"%>
+      </div>
+    </div>
+  <% end %> <!-- form_for end -->
+</div>
+<script type="text/javascript">
+  $(".datepicker" ).datetimepicker();
+</script>

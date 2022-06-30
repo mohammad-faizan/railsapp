@@ -17,7 +17,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-mocks.git
-  revision: a2fc2f6bcfffbc7821b7974527d065c8f88560ff
+  revision: eb6d7e93474308d913fe794bebdee7d50fb33e28
   branch: main
   specs:
     rspec-mocks (3.12.0.pre)
@@ -26,7 +26,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-rails.git
-  revision: c187d036bf4a49054c8485bc6a55f03d2af99581
+  revision: edb30624f0a1c8dcf37da90780a22d8c07e0cd31
   branch: main
   specs:
     rspec-rails (6.0.0.pre)
@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: https://github.com/rspec/rspec-support.git
-  revision: 594aa52c39bf8b5b75a1c9a40315b72cd88adc2b
+  revision: 528d88ce6fac5f83390bf430d1c47608e9d8d29a
   branch: main
   specs:
     rspec-support (3.12.0.pre)
@@ -148,15 +148,11 @@ GEM
     matrix (0.4.2)
     method_source (1.0.0)
     mini_mime (1.1.2)
-    mini_portile2 (2.8.0)
-    minitest (5.15.0)
+    minitest (5.16.1)
     msgpack (1.5.2)
     mysql2 (0.5.4)
     nio4r (2.5.8)
-    nokogiri (1.13.6)
-      mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.13.6-x86_64-darwin)
+    nokogiri (1.13.6-x86_64-linux)
       racc (~> 1.4)
     public_suffix (4.0.7)
     puma (5.6.4)
@@ -167,8 +163,8 @@ GEM
       rack (>= 1.2.0)
     rack-proxy (0.7.2)
       rack
-    rack-test (1.1.0)
-      rack (>= 1.0, < 3)
+    rack-test (2.0.2)
+      rack (>= 1.3)
     rails (6.1.6)
       actioncable (= 6.1.6)
       actionmailbox (= 6.1.6)
@@ -187,7 +183,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.4.2)
+    rails-html-sanitizer (1.4.3)
       loofah (~> 2.3)
     railties (6.1.6)
       actionpack (= 6.1.6)
@@ -212,14 +208,14 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    selenium-webdriver (4.2.1)
+    selenium-webdriver (4.3.0)
       childprocess (>= 0.5, < 5.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
     spring (4.0.0)
-    sprockets (4.0.3)
+    sprockets (4.1.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
     sprockets-rails (3.4.2)
@@ -253,11 +249,10 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.5.4)
+    zeitwerk (2.6.0)
 
 PLATFORMS
-  ruby
-  x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
@@ -287,4 +282,4 @@ RUBY VERSION
    ruby 2.7.5p203
 
 BUNDLED WITH
-   2.3.6
+   2.3.17

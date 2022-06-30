@@ -2,15 +2,18 @@
 <html>
   <head>
     <title>Railsapp</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <div class="jumbotron d-flex align-items-center min-vh-100">
+      <div class="container text-center">
+        <%= yield %>
+      </div>      
+    </div>
   </body>
 </html>
