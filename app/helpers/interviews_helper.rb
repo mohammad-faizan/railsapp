@@ -23,7 +23,7 @@ module InterviewsHelper
       concat content_tag(:td, c.average_ratings)
       concat content_tag(:td, link_to("View", interview_path(c), class: "btn btn-primary"))
       concat content_tag(:td, link_to("Update", edit_interview_path(c), class: "btn btn-secondary"))
-      concat content_tag(:td, link_to("Delete", interview_path(c), class: "btn btn-danger"))
+      concat content_tag(:td, link_to("Delete", c, data: {method: :delete, remote: true, confirm: 'Are you sure ?'}, class: "btn btn-danger btn-delete"))
     end
   end
 end

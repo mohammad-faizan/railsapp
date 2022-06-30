@@ -21,7 +21,7 @@ class PersonController < ApplicationController
     @person = Module.const_get(person_params[:type]).new(person_params)
     if valid_type(@person)
       if @person.save
-        redirect_to eval("#{@person.type.downcase.pluralize}_path")
+        redirect_to list_url(type: @person.type.downcase)
       else
         render :new
       end

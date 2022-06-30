@@ -36,7 +36,7 @@
       <div class="col-sm-3"></div>
       <div class="col-sm-9">
         <%= f.submit "Submit", class: "btn btn-success" %>  
-        <%= link_to "Cancel", eval("#{@person.type.downcase.pluralize}_path"), class: "btn btn-secondary"%>
+        <%= link_to "Cancel", list_path(type: params[:type]), class: "btn btn-secondary"%>
       </div>
     </div>
   <% end %> <!-- form_for end -->

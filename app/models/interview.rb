@@ -1,8 +1,8 @@
 class Interview < ApplicationRecord
   belongs_to :candidate, class_name: :Person, foreign_key: :candidate_id
-  has_many :interview_rounds
+  has_many :interview_rounds, dependent: :destroy
   validates_length_of :interview_rounds, maximum: 3
-  accepts_nested_attributes_for :interview_rounds, allow_destroy: true, reject_if: :all_blank
+  accepts_nested_attributes_for :interview_rounds, allow_destroy: true, reject_if: :all_blank, allow_destroy: true
 
   def status
     status = interview_rounds.select {|r| r.status}.last

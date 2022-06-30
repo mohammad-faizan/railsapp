@@ -7,7 +7,7 @@ class InterviewsController < ApplicationController
 
   def new
     @interview = Interview.new
-    @interview.interview_rounds.build# = [InterviewRound.new]
+    @interview.interview_rounds.build
     load_people
   end
 
@@ -29,6 +29,21 @@ class InterviewsController < ApplicationController
     load_people
   end
 
+  def update
+    @interview = Interview.find(params[:id])
+    load_people
+  end
+
+  def destroy
+    @interview = Interview.find(params[:id])
+    if @interview.destroy
+      respond_to do |f|
+        f.json {render json: {status: 'OK'}}
+        f.js
+      end
+    end
+  end
+
   private
 
   def interview_params
@@ -36,7 +51,7 @@ class InterviewsController < ApplicationController
   end
 
   def load_people
-    @employees = Employee.includes(people_skills: [:skills]).all
-    @candidates = Candidate.includes(people_skills: [:skills]).all
+    @employees = Employee.includes(:skills).all
+    @candidates = Candidate.includes(:skills).all
   end
 end

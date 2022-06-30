@@ -18,7 +18,7 @@
     <div class="interview_round">
       <% @interview.interview_rounds.each_with_index do |i_round, i| %>
         <h3>Schedule Interview Round : <%= i + 1 %></h3>
-        <%= f.fields_for :interview_rounds do |ir| %>
+        <%= f.fields_for :interview_round do |ir| %>
           <div class="mb-3 row">
             <%= ir.label :employee, class: "col-sm-2 col-form-label" %>
             <div class="col-sm-6">
