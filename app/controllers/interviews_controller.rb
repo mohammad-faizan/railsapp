@@ -1,6 +1,6 @@
 class InterviewsController < ApplicationController
   def index
-    @list = Interview.includes(:candidate, :interview_rounds).all
+    @list = Interview.get_interviews()
     params[:type] = "interviews"
   end
 
@@ -12,7 +12,7 @@ class InterviewsController < ApplicationController
   end
 
   def show
-    @interview = Interview.includes(:interview_rounds, :candidate).find(params[:id])
+    @interview = Interview.get_interviews(params[:id]).first
   end
 
   def create
@@ -31,7 +31,11 @@ class InterviewsController < ApplicationController
 
   def update
     @interview = Interview.find(params[:id])
-    load_people
+    if @interview.update(interview_params)
+      redirect_to @interview
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -44,10 +48,14 @@ class InterviewsController < ApplicationController
     end
   end
 
+  def reports
+    @list = Interview.filter_candidates_by_rating(params[:report])
+  end
+
   private
 
   def interview_params
-    params.require(:interview).permit(:candidate_id, :requirements, :interview_rounds_attributes => [:employee_id, :when, :where, :status])
+    params.require(:interview).permit(:candidate_id, :requirements, :interview_rounds_attributes => [:id, :employee_id, :when, :where, :status, :_destroy])
   end
 
   def load_people

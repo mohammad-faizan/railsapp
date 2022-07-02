@@ -1,0 +1,32 @@
+<div class="nested-fields">
+  <hr/>
+  <%= f.hidden_field :_destroy %>
+  <div class="row">
+    <div class="text-end"><%= link_to "Remove", "#", class: "remove_fields" %></div>
+  </div>
+
+  <div class="mb-3 row">
+    <%= f.label :employee, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.select :employee_id, options_for_select(@employees.collect{|c| [c.name, c.id]}, f.object.employee_id), {},{class: "form-select form-select-lg mb-3"} %>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <%= f.label :Interview_date, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-3">
+      <%= f.text_field :when, class: 'form-control datepicker'%>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <%= f.label :interview_location, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.text_field :where, class: 'form-control'%>
+    </div>
+  </div>
+  <div class="mb-3 row">
+    <%= f.label :round_status, class: "col-sm-2 col-form-label" %>
+    <div class="col-sm-6">
+      <%= f.select :status, options_for_select(InterviewRound::STATUS.collect {|k, v| [k, v]}, f.object.status),{}, {class: "form-select form-select-lg mb-3"} %>
+    </div>
+  </div>
+</div>

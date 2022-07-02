@@ -19,7 +19,7 @@ module InterviewsHelper
     content_tag :tr, scope: "row" do
       concat content_tag(:td, (i+1))
       concat content_tag(:td, c.candidate.name)
-      concat content_tag(:td, c.interview_rounds.count)
+      concat content_tag(:td, c.interview_rounds.size)
       concat content_tag(:td, c.average_ratings)
       concat content_tag(:td, link_to("View", interview_path(c), class: "btn btn-primary"))
       concat content_tag(:td, link_to("Update", edit_interview_path(c), class: "btn btn-secondary"))

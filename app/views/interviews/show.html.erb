@@ -1,34 +1,40 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      Candidate Name: 
+    <div class="col text-start">
+      <%= link_to "<< Back", interviews_path, class: "btn btn-secondary" %>
     </div>
     <div class="col">
-      <%= @interview.candidate.name %>
-    </div>
-    <div class="col">
-    </div>
-    <div class="col">
+      <h3>Candidate Name: <%= @interview.candidate.name %></h3>
     </div>
   </div>
 
   <div class="row">
     <table class="table">
       <thead>
-        <th>Interview Round</th>
+        <th>Round</th>
+        <th>Interviewer</th>
         <th>Scheduled Date</th>
         <th>Interview Location</th>
         <th>Status</th>
+        <th>Ratings</th>
+        <th>Review Comments</th>
       </thead>
       <tbody>
-        <% @interview.interview_rounds.each_with_index do |r, i| %>
-          <tr>
-            <td><%= i + 1%></td>
-            <td><%= r.when %></td>
-            <td><%= r.where %></td>
-            <td><%= r.round_status %></td>
-          </tr>
-        <% end %>        
+        <% if @interview.interview_rounds.size > 0 %>
+          <% @interview.interview_rounds.each_with_index do |r, i| %>
+            <tr>
+              <td><%= i + 1 %></td>
+              <td><%= r.employee.name %></td>
+              <td><%= r.when %></td>
+              <td><%= r.where %></td>
+              <td><%= r.round_status %></td>
+              <td><%= r.ratings_as_string %></td>
+              <td><%= r.review_comments %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <p>No Record(s) Found</p>
+        <% end %>
       </tbody>
   </div>
 </div>

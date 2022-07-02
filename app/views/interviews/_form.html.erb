@@ -15,37 +15,13 @@
       </div>
     </div>
 
-    <div class="interview_round">
-      <% @interview.interview_rounds.each_with_index do |i_round, i| %>
-        <h3>Schedule Interview Round : <%= i + 1 %></h3>
-        <%= f.fields_for :interview_round do |ir| %>
-          <div class="mb-3 row">
-            <%= ir.label :employee, class: "col-sm-2 col-form-label" %>
-            <div class="col-sm-6">
-              <%= ir.select :employee_id, options_for_select(@employees.collect{|c| [c.name, c.id]}, i_round.employee_id), {},{class: "form-select form-select-lg mb-3"} %>
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <%= ir.label :Interview_date, class: "col-sm-2 col-form-label" %>
-            <div class="col-sm-3">
-              <%= ir.text_field :when, class: 'form-control datepicker'%>
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <%= ir.label :interview_location, class: "col-sm-2 col-form-label" %>
-            <div class="col-sm-6">
-              <%= ir.text_field :where, class: 'form-control'%>
-            </div>
-          </div>
-          <div class="mb-3 row">
-            <%= ir.label :round_status, class: "col-sm-2 col-form-label" %>
-            <div class="col-sm-6">
-              <%= ir.select :status, options_for_select(InterviewRound::STATUS.collect {|v, k| [k, v]}, i_round.status),{}, {class: "form-select form-select-lg mb-3"} %>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
-    </div> <!--interview round end -->
+    <%= f.fields_for :interview_rounds do |ir| %>
+      <%= render "interview_round_fields", f: ir %>
+    <% end %>
+
+    <div class="row">
+      <%= link_to_add_fields "Add Interview Round", f, :interview_rounds %>      
+    </div>    
 
     <div class="mb-3 row">
       <%= f.submit "Submit", class: "btn btn-success col-sm-2" %>
@@ -53,6 +29,3 @@
     </div>
   <% end %> <!-- form_for end -->
 </div>
-<script type="text/javascript">
-  $(".datepicker" ).datetimepicker();
-</script>

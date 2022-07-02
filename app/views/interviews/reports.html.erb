@@ -1,0 +1,8 @@
+<h1><%= params[:report].split('_').map(&:capitalize).join(' ') %></h1>
+
+<div class="row">
+  <div class="col text-start col-sm-4">
+      <%= link_to "<< Back", interviews_path, class: "btn btn-secondary" %>
+  </div>
+</div>
+<%= display_interviews_table(@list) %>

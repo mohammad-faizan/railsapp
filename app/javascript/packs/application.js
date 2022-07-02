@@ -25,3 +25,5 @@ require('jquery-datetimepicker');
 // The stylesheet location we created earlier
 require("../stylesheets/application.scss")
 require("jquery-datetimepicker/jquery.datetimepicker.css")
+require('./forms/addFields')
+require('./forms/removeFields')

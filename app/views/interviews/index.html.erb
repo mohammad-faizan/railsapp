@@ -1,27 +1,32 @@
 <h1><%= params[:type].capitalize %> Record List</h1>
 
 <div class="row">
-  <div class="col text-start col-sm-3">
+  <div class="col text-start col-sm-4">
       <%= link_to "<< Back", root_path, class: "btn btn-secondary" %>
   </div>
 
-  <div class="col text-mid row col-sm-6">
-    <div class="col-sm-3"><%= label_tag :filter_by %></div>
-    <div class="col-sm-4">
-      <%= select_tag(:filter, options_for_select([["Name", "name"], ["Ratings"]]), {class: "form-select"}) %>         
+  <div class="col text-mid col-sm-4">
+    <div class="dropdown">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        Reports
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+        <li><%= link_to "Rating >= 3",  reports_path(report: 'rating_3'), class: "dropdown-item" %></li>
+        <li><%= link_to "Rating >= 3 Not Any below 2", reports_path(report: 'rating_3_not_2'), class: "dropdown-item" %></li>
+      </ul>
     </div>
-    <div class="col-sm-5"><%= text_field_tag :filter_value, '', class: "form-control" %></div>
   </div>
 
-  <div class="col text-end col-sm-3">
+  <div class="col text-end col-sm-4">
     <%= link_to "Schedule Interview", new_interview_path, class: "btn btn-primary" %>
   </div>
 </div>
-
-<%= display_interviews_table(@list) %>
+<div id="interview_list">
+  <%= render 'interview_list' %>
+</div>
 
 <script type="text/javascript">
   $('.btn-delete').bind('ajax:success', function(){
     $(this).closest('tr').fadeOut();
   });
-</script>>
+</script>

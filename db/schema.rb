@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2022_06_28_183504) do
   create_table "skill_ratings", charset: "utf8", force: :cascade do |t|
     t.bigint "interview_round_id"
     t.bigint "skill_id"
-    t.bigint "rating"
+    t.integer "rating"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["interview_round_id"], name: "index_skill_ratings_on_interview_round_id"
