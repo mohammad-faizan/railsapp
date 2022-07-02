@@ -1,1 +1,4 @@
-<%= display_interviews_table(@list) %>
+<%= display_interviews_table(@list, params[:page]) %>
+<div class="row">
+  <%= paginate @list %>
+</div>

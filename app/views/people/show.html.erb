@@ -1,0 +1,21 @@
+<div class="input-group">
+  <span class="input-group-text">Name: </span>
+  <span class="form-control"><%= @person.name %></span>
+</div>
+
+<div class="input-group">
+  <span class="input-group-text">Email: </span>
+  <span class="form-control"><%= @person.email %></span>
+</div>
+
+<div class="input-group">
+  <span class="input-group-text">Experience: </span>
+  <span class="form-control"><%= @person.experience %> Years</span>
+</div>
+
+<% if @person.is_a?(Candidate) %>
+  <div class="input-group">
+    <span class="input-group-text">Date Of Birth: </span>
+    <span class="form-control"><%= @person.dob %></span>
+  </div>
+<% end %>

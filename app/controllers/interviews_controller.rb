@@ -1,7 +1,7 @@
 class InterviewsController < ApplicationController
   def index
-    @list = Interview.get_interviews()
     params[:type] = "interviews"
+    @list = Interview.page(params[:page]).includes(:candidate, interview_rounds: [:employee, {skill_ratings: :skill}])
   end
 
 

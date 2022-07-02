@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  root "person#index"
+  root "people#index"
 
-
-  get 'list' => 'person#list'
-  get 'new' => 'person#new'
-  post 'create' => 'person#create'
+  resources :people
   resources :interviews
+
+  get 'list' => 'people#list'
   get 'reports' => 'interviews#reports'
 end

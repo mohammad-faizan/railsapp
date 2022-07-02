@@ -1,16 +1,20 @@
-class PersonController < ApplicationController
+class PeopleController < ApplicationController
   def index
   end
 
   def list
     table = Module.const_get(params[:type].capitalize)
     if valid_type(table.new)
-      @list = table.includes(:skills).all
+      @list = table.page(params[:page]).includes(:skills)
       params[:type] = table.to_s.downcase
-      render :person_list
+      render :people_list
     else
       redirect_to root_url
     end
+  end
+
+  def show
+    @person = Module.const_get(params[:type].capitalize).includes(:skills).find(params[:id])
   end
 
   def new

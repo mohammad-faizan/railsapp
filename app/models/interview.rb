@@ -28,7 +28,7 @@ class Interview < ApplicationRecord
   end
 
 
-  def self.get_interviews(id=nil)
+  def self.get_interviews(id=nil, opts={page: 1})
     begin
       if id
         Interview.includes(:candidate, interview_rounds: [:employee, {skill_ratings: :skill}]).where(id: id)
@@ -70,16 +70,18 @@ class Interview < ApplicationRecord
     # returns filtered Interview records IDs
     interview_ids = filter_candidates_by_rating_3
 
+    return [] if interview_ids.empty?
+
     # find interview rounds having any rating below 2
-    interview_rounds = InterviewRound.joins(:skill_ratings)
-                        .where("interview_rounds.interview_id IN (#{interview_ids.join(',')})")
-                        .where("skill_ratings.rating < ?", 2).pluck(:id)
+    interview_round_ids = InterviewRound.joins(:skill_ratings)
+                            .where("interview_rounds.interview_id IN (#{interview_ids.join(',')})")
+                            .where("skill_ratings.rating < ?", 2).pluck(:id)
 
     # find interviews having average rating > 3
     # and reject the ones having any rating < 2 in any skill
     Interview.joins(interview_rounds: :skill_ratings)
                           .where("interviews.id IN (#{interview_ids.join(',')})")
-                          .where("interviews.id NOT IN (select interview_id from interview_rounds where id IN (#{interview_rounds.join(',')}))")
+                          .where("interviews.id NOT IN (select interview_id from interview_rounds where id IN (#{interview_round_ids.join(',')}))")
                           .pluck(:id)
 
   end

@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'date'
 skills = [
   'Ruby',
   'Rails',
@@ -29,23 +30,43 @@ skills = [
   'Machine Learning',
   'Data Science'
 ]
+
+created_skills = []
 skills.each do |skill|
-  Skill.create(skill_name: skill)
+  created_skills << Skill.create(skill_name: skill)
 end
 
-(1..10).each do |n|
-  t = "Employee_#{n}"
+(1..100).each do |n|
   d = lambda {|t| {name: t,email: "#{t}@email.com",experience: rand(1..15)}}
+
+  # Type Employee
+  t = "Employee_#{n}"
   emp = Employee.create(d.call(t))
+
+  # Type Candidate
   t = "Candidate_#{n}"
-  cand = Candidate.create(d.call(t))
-  p PeopleSkill.create(person_id: emp.id, skill_id: n)
-  p PeopleSkill.create(person_id: cand.id, skill_id: n)
-  intrvw = Interview.create(candidate: cand, requirements: skills.sample(rand(1..skills.length)).join(' '))
-  (1..3).each do |o|
-    ir = InterviewRound.create(interview: intrvw, employee: emp, when: DateTime.now, where: "Some place", review_comments: "Text review comments")
-    (1..rand(10)).each do |k|
-      SkillRating.create(interview_round: ir, skill_id: k, rating: rand(1..5))
+  candidate_data = d.call(t)
+  candidate_data[:dob] = Date.today
+  cand = Candidate.create(candidate_data)
+
+  sampled_skills = created_skills.sample(rand(5..22))
+  sampled_skills.each do |skill|
+    PeopleSkill.create(person: emp, skill: skill)
+    PeopleSkill.create(person: cand, skill: skill)
+  end
+
+  interview = Interview.create(candidate: cand, requirements: "Skill requirements - #{n}")
+
+  (1..3).each do |round|
+    interview_round = InterviewRound.create(interview: interview,
+                        employee: emp, when: DateTime.now,
+                        where: "Interview Place #{n} - #{round}",
+                        review_comments: "review comments #{n} - #{round}",
+                        status: InterviewRound::STATUS[:done])
+
+    sampled_skills.each do |skill|
+      rating = n.even? ? rand(1..5) : rand(2..5)
+      SkillRating.create(interview_round: interview_round, skill: skill, rating: rating)
     end
   end
 end
