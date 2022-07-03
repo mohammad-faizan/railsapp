@@ -11,7 +11,7 @@ class InterviewRound < ApplicationRecord
   }
 
   def round_status
-    STATUS.fetch(self.status.to_i, "Unknown")
+    STATUS.key(self.status.to_i)
   end
 
   def rating
@@ -22,5 +22,13 @@ class InterviewRound < ApplicationRecord
 
   def ratings_as_string
     self.skill_ratings.map { |r| "#{r.skill.skill_name} #{r.rating}/#{SkillRating::MAX_RATING}"}.join(', ')
+  end
+
+  def get_interviewer_name
+    begin
+      self.employee.name
+    rescue
+      "Not Found"
+    end
   end
 end

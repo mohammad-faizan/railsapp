@@ -19,3 +19,8 @@
     <span class="form-control"><%= @person.dob %></span>
   </div>
 <% end %>
+<div class="row">
+  <div class="col text-start">
+      <%= link_to "<< Back", list_path(type: @person.class), class: "btn btn-secondary" %>
+  </div>
+</div>

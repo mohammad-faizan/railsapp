@@ -32,8 +32,15 @@ module PeopleHelper
       concat content_tag(:td, (offset + i))
       fields.collect {|f| concat content_tag(:td, p.send(f))}
       concat content_tag(:td, link_to("View", person_path(p, type: p.class), class: "btn btn-primary"))
-      concat content_tag(:td, link_to("Update", edit_person_path(p), class: "btn btn-secondary"))
-      concat content_tag(:td, link_to("Delete", person_path(p), data: {method: :delete, remote: true, confirm: 'Are you sure ?'}, class: "btn btn-danger btn-delete"))
+      concat content_tag(:td, link_to("Update", edit_person_path(p, type: p.class), class: "btn btn-secondary"))
+      concat content_tag(:td, link_to("Delete", person_path(p, type: p.class), data: {method: :delete, remote: true, confirm: 'Are you sure ?'}, class: "btn btn-danger btn-delete"))
     end
+  end
+
+  def get_form_options(object)
+    opts = {class: "g-3"}
+    opts.update({url: people_path}) if object.new_record?
+    opts.update({url: person_path(object), method: 'put'}) if object.persisted?
+    opts
   end
 end

@@ -24,7 +24,7 @@
           <% @interview.interview_rounds.each_with_index do |r, i| %>
             <tr>
               <td><%= i + 1 %></td>
-              <td><%= r.employee.name %></td>
+              <td><%= r.get_interviewer_name %></td>
               <td><%= r.when %></td>
               <td><%= r.where %></td>
               <td><%= r.round_status %></td>

@@ -16,3 +16,8 @@
 <div class="row">
   <%= paginate @list %>
 </div>
+<script type="text/javascript">
+  $('.btn-delete').bind('ajax:success', function(){
+    $(this).closest('tr').fadeOut();
+  });
+</script>
