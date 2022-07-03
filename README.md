@@ -41,6 +41,6 @@ Rspec
 Some basic Rspec examples have been added.
 
 1. cd to project root
-2. Run `rspec`
+2. Run `rspec --format documentation`
 
 
